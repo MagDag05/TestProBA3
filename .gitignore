@@ -33,12 +33,12 @@ out
 .gradle
 chromedriver
 gradle
- HEAD
-        build.gradle
-        config
-        description
-        gradlew
-        gradlew.bat
-        hooks/
-        info/
-        settings.gradle
+HEAD
+build.gradle
+config
+description
+gradlew
+gradlew.bat
+hooks/
+info/
+settings.gradle
