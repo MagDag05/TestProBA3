@@ -1,5 +1,4 @@
 package Webstaurantstore.Tests;
-
 import Webstaurantstore.Pages.CartPage;
 import Webstaurantstore.Pages.PLPPage;
 import org.openqa.selenium.By;
@@ -29,11 +28,9 @@ public class CartTests extends BaseTest{
         CartPage.addToCart();
         CartPage.clickOnCartButton();
         CartPage.verifyItemInCart();
-
+        Assert.assertEquals(CartPage.verifyItemInCart(), "true");
         CartPage.clickEmptyCart();
-//        CartPage.verifyCartIsEmpty();
-//        String emptyCart = wait.until(ExpectedConditions.visibilityOf (driver.findElement(By.cssSelector("[class*='modal-header ']>h3")))).getText();
-        Assert.assertEquals(CartPage.verifyCartIsEmpty(), "Empty Cart");
+        Assert.assertEquals(CartPage.textOnEmptyCart.getText(), "Empty Cart");
         CartPage.clickEmptyCartButtonConfirmation();
     }
 

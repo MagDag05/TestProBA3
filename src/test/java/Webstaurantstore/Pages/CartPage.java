@@ -13,16 +13,22 @@ public class CartPage extends BasePage{
 
 
     @FindBy (css = "https://www.webstaurantstore.com/valor-25-oz-pre-seasoned-cast-iron-round-server-pack/825CI25MS.html")
-     private WebElement openProductPage;
+     private static WebElement openPage;
+
     @FindBy ( id = "buyButton")
-    private WebElement buyButton;
+    private static WebElement buyButton;
 
     @FindBy (css = "[class*='emptyCartButton']")
     private static WebElement emptyCartButton;
 
-//    @FindBy (css = "[class='itemDescription description']>a")
-//    private WebElement listOfElementsInCart;
+    @FindBy (css = "[class='itemDescription description']>a")
+    private static List <WebElement> listOfElementsInCart;
 
+    @FindBy (css = "[class*='modal-header ']>h3")
+    public static WebElement textOnEmptyCart;
+
+//    @FindBy (xpath = "//button[contains(text(),'Empty')")
+//    private static EmptyCartButtonConfirmation;
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -30,14 +36,14 @@ public class CartPage extends BasePage{
     }
 
 
-    public void openPage() { WebElement openPDPPage = openProductPage; }
+    public  static void openPage() { driver.get("https://www.webstaurantstore.com/valor-25-oz-pre-seasoned-cast-iron-round-server-pack/825CI25MS.html"); }
 
-    public void addToCart() { wait.until(ExpectedConditions.elementToBeClickable(buyButton)).click();  }
+    public static void addToCart() { wait.until(ExpectedConditions.elementToBeClickable(buyButton)).click();  }
 
     public static void clickOnCartButton() { wait.until(ExpectedConditions.elementToBeClickable(By.id("cartItemCountSpan"))).click();  }
 
-    public static void verifyItemInCart() {
-        List<WebElement> Cart = driver.findElements(By.cssSelector("[class=\'itemDescription description\']>a");
+    public static boolean verifyItemInCart() {
+        List<WebElement> Cart = listOfElementsInCart;
         System.out.println(Cart.size());
         Boolean quantity = false;
         for (int i =0; i<=Cart.size(); i++)
@@ -45,19 +51,18 @@ public class CartPage extends BasePage{
             if (cartText.equals("Valor 25 oz. Pre-Seasoned Mini Cast Iron Round Casserole Dish - 12/Case"))
             {quantity = true;
                 break;}}
-        System.out.println(quantity);
-//        Assert.assertTrue(quantity.equals(true));
+        return quantity;
     }
 
 
     public static void clickEmptyCart() { wait.until(ExpectedConditions.elementToBeClickable(emptyCartButton)).click();   }
 
-
-    public static String verifyCartIsEmpty() {
-        String emptyCart = wait.until(ExpectedConditions.visibilityOf (driver.findElement(By.cssSelector("[class*='modal-header ']>h3")))).getText();
-       return  emptyCart;
+//
+//    public static String verifyCartIsEmpty() {
+//        String emptyCart = wait.until(ExpectedConditions.visibilityOf (textOnEmptyCart)).getText();
+//       return  emptyCart;
 //        Assert.assertEquals(emptyCart, "Empty Cart");
-    }
+//    }
 
     public static void clickEmptyCartButtonConfirmation() { wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Empty')]"))).click();  }
 

@@ -12,13 +12,6 @@ public class BaseTest {
 
     WebDriver driver;
     WebDriverWait wait;
-//
-//    //it defines what driver to use
-//    public BaseTest(WebDriver driver){
-//        this.driver = driver;
-//        WebDriverWait wait = new WebDriverWait(driver,10);
-//    }
-
 
     @BeforeMethod
     public void setupBeforeMethodp() {
