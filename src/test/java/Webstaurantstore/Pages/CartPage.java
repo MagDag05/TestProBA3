@@ -24,10 +24,10 @@ public class CartPage extends BasePage{
     private static WebElement emptyCartButton;
 
     @FindBy (xpath = "//*[contains(text(), 'Are you sure you want to empty your cart?')]")
-    public static WebElement textOnEmptyCart;
+    private static WebElement textOnEmptyCart;
 
     @FindBy (xpath = "//button[contains(text(),'Empty')]")
-    public static WebElement emptyButtonConfirmation;
+    private static WebElement emptyButtonConfirmation;
 
 
 

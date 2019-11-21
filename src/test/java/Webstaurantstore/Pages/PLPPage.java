@@ -33,9 +33,6 @@ public class PLPPage extends BasePage{
 
     public static String verifySearchResult() {
        String item = (resultOfSearch).getText();
-       return item;
-//        Assert.assertEquals(item, "Valor 25 oz. Pre-Seasoned Mini Cast Iron Round Casserole Dish - 12/Case");
-        }
-
+       return item;        }
 
 }
