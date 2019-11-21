@@ -1,12 +1,8 @@
 package Webstaurantstore.Pages;
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
-
 import java.util.List;
 
 public class CartPage extends BasePage{
@@ -16,31 +12,37 @@ public class CartPage extends BasePage{
      private static WebElement openPage;
 
     @FindBy ( id = "buyButton")
-    private static WebElement buyButton;
+    private static WebElement addToCartButton;
 
-    @FindBy (css = "[class*='emptyCartButton']")
-    private static WebElement emptyCartButton;
+    @FindBy (id = "cartItemCountSpan")
+    private static WebElement cartButton;
 
     @FindBy (css = "[class='itemDescription description']>a")
     private static List <WebElement> listOfElementsInCart;
 
-    @FindBy (css = "[class*='modal-header ']>h3")
+    @FindBy (css = "[class*='emptyCartButton']")
+    private static WebElement emptyCartButton;
+
+    @FindBy (xpath = "//*[contains(text(), 'Are you sure you want to empty your cart?')]")
     public static WebElement textOnEmptyCart;
 
-//    @FindBy (xpath = "//button[contains(text(),'Empty')")
-//    private static EmptyCartButtonConfirmation;
+    @FindBy (xpath = "//button[contains(text(),'Empty')]")
+    public static WebElement emptyButtonConfirmation;
+
+
 
     public CartPage(WebDriver driver) {
         super(driver);
 
     }
 
+    public  static void openPage() {  driver.get("https://www.webstaurantstore.com/valor-25-oz-pre-seasoned-cast-iron-round-server-pack/825CI25MS.html"); }
 
-    public  static void openPage() { driver.get("https://www.webstaurantstore.com/valor-25-oz-pre-seasoned-cast-iron-round-server-pack/825CI25MS.html"); }
 
-    public static void addToCart() { wait.until(ExpectedConditions.elementToBeClickable(buyButton)).click();  }
+    public static void addToCart() { wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();  }
 
-    public static void clickOnCartButton() { wait.until(ExpectedConditions.elementToBeClickable(By.id("cartItemCountSpan"))).click();  }
+
+    public static void clickOnCartButton() { wait.until(ExpectedConditions.elementToBeClickable(cartButton)).click();  }
 
     public static boolean verifyItemInCart() {
         List<WebElement> Cart = listOfElementsInCart;
@@ -57,13 +59,12 @@ public class CartPage extends BasePage{
 
     public static void clickEmptyCart() { wait.until(ExpectedConditions.elementToBeClickable(emptyCartButton)).click();   }
 
-//
-//    public static String verifyCartIsEmpty() {
-//        String emptyCart = wait.until(ExpectedConditions.visibilityOf (textOnEmptyCart)).getText();
-//       return  emptyCart;
-//        Assert.assertEquals(emptyCart, "Empty Cart");
-//    }
 
-    public static void clickEmptyCartButtonConfirmation() { wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(text(),'Empty')]"))).click();  }
+    public static String verifyCartIsEmpty() {
+      String emptyCart = wait.until(ExpectedConditions.visibilityOf (textOnEmptyCart)).getText();
+       return  emptyCart;
+    }
+
+    public static void clickEmptyCartButtonConfirmation() { wait.until(ExpectedConditions.elementToBeClickable(emptyButtonConfirmation)).click();  }
 
 }

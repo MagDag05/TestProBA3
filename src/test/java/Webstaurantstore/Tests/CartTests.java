@@ -1,37 +1,33 @@
 package Webstaurantstore.Tests;
 import Webstaurantstore.Pages.CartPage;
-import Webstaurantstore.Pages.PLPPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class CartTests extends BaseTest{
 
-//
-//    public CartTests(WebDriver driver) {
-//        super(driver);
-//    }
-
-    @BeforeMethod
+    @BeforeClass
     private  CartPage initSetUp() {
         CartPage cartPage = new CartPage(driver);
         return cartPage;
     }
 
+
     @Test(description = " Shoping cart functionality")
     public void cartFunctionality()throws NullPointerException {
-        CartPage cartPage = initSetUp();
         CartPage.openPage();
         CartPage.addToCart();
         CartPage.clickOnCartButton();
         CartPage.verifyItemInCart();
-        Assert.assertEquals(CartPage.verifyItemInCart(), "true");
+        Assert.assertTrue(CartPage.verifyItemInCart()); }
+
+        @Test (description = "Verify shoping cart is empty")
+
+       public void verifyCartIsEmpty() {
         CartPage.clickEmptyCart();
-        Assert.assertEquals(CartPage.textOnEmptyCart.getText(), "Empty Cart");
+        Assert.assertEquals(CartPage.verifyCartIsEmpty(), "Are you sure you want to empty your cart?");
         CartPage.clickEmptyCartButtonConfirmation();
+        }
     }
 
-}
+

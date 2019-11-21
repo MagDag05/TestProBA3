@@ -1,16 +1,11 @@
 package Webstaurantstore.Tests;
 
 import Webstaurantstore.Pages.PLPPage;
-import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class PLPTests extends BaseTest {
-
-//
-//    public PLPTests(WebDriver driver) {
-//        super(driver);
-//    }
 
 
     @BeforeMethod
@@ -26,6 +21,7 @@ public class PLPTests extends BaseTest {
         PLPPage.searchForItem();
         PLPPage.clickOnSearchButton();
         PLPPage.verifySearchResult();
+      Assert.assertEquals(PLPPage.verifySearchResult(), "Valor 25 oz. Pre-Seasoned Mini Cast Iron Round Casserole Dish - 12/Case");
 
 
   }
